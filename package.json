@@ -1,0 +1,20 @@
+{
+	"name": "atc-ai-tasks",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "npm i && npx wrangler deploy",
+		"dev": "npx wrangler dev",
+		"start": "npx wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-pool-workers": "^0.7.5",
+		"@cloudflare/workers-types": "^4.20250403.0",
+		"typescript": "^5.5.2",
+		"vitest": "~3.0.7",
+		"wrangler": "^4.7.0",
+		"openai": "^4.0.0"
+	}
+}
