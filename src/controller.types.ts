@@ -1,4 +1,3 @@
-import { timeStamp } from "console";
 import { createHash } from "crypto";
 
 // use FNV-1a hash function for lightweight hashing
@@ -46,5 +45,5 @@ export const sanitizeMember = (member: Member): Member => {
 
 
 export const serializeMember = (member: Member): string => {
-    return `member joined ${timeStamp} with connection ${member.connection || 'N/A'}, school ${member.school || 'N/A'}, current company ${member.currentCompany || 'N/A'}, job category ${member.jobCategory || 'N/A'}, open to mentoring: ${member.openToMentoring}`;
+    return `member joined ${Date()} with connection ${member.connection || 'N/A'}, school ${member.school || 'N/A'}, current company ${member.currentCompany || 'N/A'}, job category ${member.jobCategory || 'N/A'}, open to mentoring: ${member.openToMentoring}`;
 }

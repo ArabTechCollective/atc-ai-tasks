@@ -1,5 +1,6 @@
 import { Router } from "itty-router";
 import { validateMemberTable } from "./controller.validators";
+import { insertMemberVectors } from "./vectorize";
 
 const router = Router();
 
@@ -7,17 +8,7 @@ router.get("/", () => {
     return new Response("Hello, world!");
 });
 
-router.post("/vectorize", async (req: Request) => {
-    const reqMembers = await req.json();
-    const url = new URL(req.url);
-    const table_type = url.searchParams.get('table_type');
-    if (table_type === 'member') {
-        const members = validateMemberTable(reqMembers);
-        
-    }
-    
-    return Response.json({ received: data });
-});
+router.post("/vectorize", insertMemberVectors);
 
 router.all("*", () => new Response("Not found", { status: 404 }));
 
