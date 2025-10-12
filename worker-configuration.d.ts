@@ -3,6 +3,7 @@
 // Runtime types generated with workerd@1.20251001.0 2025-04-03 
 declare namespace Cloudflare {
 	interface Env {
+        VECTORIZE: Vectorize;
 	}
 }
 interface Env extends Cloudflare.Env {}
