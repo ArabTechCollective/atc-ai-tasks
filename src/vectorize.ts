@@ -5,7 +5,6 @@ import { sanitizeMember, serializeMember } from "./controller.types";
 import { Vectorize } from '@cloudflare/workers-types';
 import { env as cloudflareEnv } from "cloudflare:workers";
 
-const openai = new OpenAI({ apiKey: env.OPENAI_API_KEY });
 const openai = new OpenAI({ apiKey: cloudflareEnv.OPENAI_API_KEY });
 const vectorDB = cloudflareEnv.VECTORIZE;
 
