@@ -3,10 +3,11 @@ import fetch from "node-fetch";
 import { Member } from "./controller.types";
 import { sanitizeMember, serializeMember } from "./controller.types";
 import { Vectorize } from '@cloudflare/workers-types';
-import { env } from "cloudflare:workers";
+import { env as cloudflareEnv } from "cloudflare:workers";
 
 const openai = new OpenAI({ apiKey: env.OPENAI_API_KEY });
-const vectorDB = env.VECTORIZE;
+const openai = new OpenAI({ apiKey: cloudflareEnv.OPENAI_API_KEY });
+const vectorDB = cloudflareEnv.VECTORIZE;
 
 export async function insertMemberVectors(members: Member[]) {
     const serializedMembers = members.map(member => serializeMember(sanitizeMember(member)));
@@ -28,6 +29,7 @@ export async function insertMemberVectors(members: Member[]) {
 
     const res = await vectorDB.upsert(vectors);
 
-    res.mutationId && console.log(`Upserted ${vectors.length} vectors with mutation ID: ${res.mutationId}`);
+    console.log(`Upserted ${res.count} vectors`);
+    console.log(`Upserted ids: ${res.ids}`);
     return res;
 }
