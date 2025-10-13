@@ -1,13 +1,15 @@
 name: Deploy to Cloudflare Workers
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
     name: Deploy
+    if: github.event.pull_request.merged == true  # Only run if PR was merged
     steps:
       - uses: actions/checkout@v4
       
@@ -23,4 +25,3 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          
