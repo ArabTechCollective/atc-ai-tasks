@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "openai-sdk-streaming",
+	"name": "atc-ai-tasks",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-04-03",
 	"observability": {
@@ -13,7 +13,7 @@
 	"vectorize": [
 		{
 			"binding": "VECTORIZE",
-			"index_name": "dev-members-context",
+			"index_name": "atc-members-vector",
 			"remote": true
 		}
 	]
