@@ -13,7 +13,7 @@
 	"vectorize": [
 		{
 			"binding": "VECTORIZE",
-			"index_name": "dev-members-context",
+			"index_name": "atc-members-vector",
 			"remote": true
 		}
 	]

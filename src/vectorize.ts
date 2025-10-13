@@ -4,11 +4,15 @@ import { Member } from "./controller.types";
 import { sanitizeMember, serializeMember } from "./controller.types";
 import { Vectorize } from '@cloudflare/workers-types';
 import { env as cloudflareEnv } from "cloudflare:workers";
+import { validateMemberTable } from "./controller.validators";
 
 const openai = new OpenAI({ apiKey: cloudflareEnv.OPENAI_API_KEY });
 const vectorDB = cloudflareEnv.VECTORIZE;
 
-export async function insertMemberVectors(members: Member[]) {
+export async function insertMemberVectors(request: Request, env: Env, ctx: ExecutionContext) {
+    const members_raw = await request.json();
+    const members = validateMemberTable(members_raw) as Member[];
+
     const serializedMembers = members.map(member => serializeMember(sanitizeMember(member)));
     const embedding = await openai.embeddings.create({
         model: "text-embedding-3-small",
